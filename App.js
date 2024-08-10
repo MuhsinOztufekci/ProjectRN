@@ -11,6 +11,9 @@ import {
 
 import React, { useState } from 'react';
 
+import Loading from './src/components/Loading';
+
+
 export default function App() {
 
   const [name, setName] = useState("");
@@ -24,24 +27,25 @@ export default function App() {
         style={styles.Image}
         source={require('./assets/images/login_icon.png')} />
 
-      <Text style ={styles.welcome}>Welcome {name} {lastName} </Text>
+      <Text style={styles.welcome}>Welcome </Text>
 
-      <Text>Name</Text>
+      <Text>Email</Text>
 
       <TextInput
-        placeholder='Enter Your Name'
+        placeholder='Enter Your Email'
         style={styles.TextInputStyle}
         onChangeText={setName}
         value={name}
       />
 
-      <Text>Last Name</Text>
+      <Text>Password</Text>
 
       <TextInput
-        placeholder='Enter Your Surname'
+        placeholder='Enter Your Password'
         style={styles.TextInputStyle}
         onChangeText={setLastName}
         value={lastName}
+        secureTextEntry={true}
       />
 
       <Pressable
@@ -55,6 +59,8 @@ export default function App() {
       >
         <Text style={styles.buttonText}>Save</Text>
       </Pressable>
+
+      <Loading />
 
     </View>
   );
