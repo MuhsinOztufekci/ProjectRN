@@ -5,7 +5,8 @@ import {
   View,
   TextInput,
   Pressable,
-  Button
+  Button,
+  Image
 } from 'react-native';
 
 import React, { useState } from 'react';
@@ -19,7 +20,11 @@ export default function App() {
   return (
     <View style={styles.container}>
 
-      <Text>Welcome {name} {lastName} </Text>
+      <Image
+        style={styles.Image}
+        source={require('./assets/images/login_icon.png')} />
+
+      <Text style ={styles.welcome}>Welcome {name} {lastName} </Text>
 
       <Text>Name</Text>
 
@@ -84,5 +89,14 @@ const styles = StyleSheet.create({
   buttonText: {
     fontWeight: 'bold',
     color: 'white',
+  },
+  Image: {
+    width: 150,
+    height: 150
+  },
+  welcome: {
+    fontWeight: 'bold',
+    fontSize: 25,
+    marginVertical: 20
   }
 });
