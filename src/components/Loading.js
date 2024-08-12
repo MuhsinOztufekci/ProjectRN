@@ -1,16 +1,22 @@
-import React from 'react'
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
+import React from 'react';
+import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 
-const Loading = () => {
+const Loading = (props) => {
     return (
         <View style={styles.container}>
+            <Pressable
+                style={styles.closeButtonContainer}
+                onPress={() => props.changeIsLoading()}
+            >
+                <Text style={styles.closeButton}>X</Text>
+            </Pressable>
             <ActivityIndicator size={'large'} color={'blue'} />
-            <Text style={styles.loginText}>Loading...</Text>
+            <Text style={styles.loginText}> Loading...</Text>
         </View>
-    )
+    );
 }
 
-export default Loading
+export default Loading;
 
 const styles = StyleSheet.create({
     container: {
@@ -27,6 +33,22 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 27,
         color: 'white',
-        marginVertical: 25
-    }
-})
+        marginTop: 25
+    },
+    closeButtonContainer: {
+        backgroundColor: 'black',
+        width: 30,
+        height: 30,
+        borderRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        top: 45,
+        right: 15
+    },
+    closeButton: {
+        fontWeight: 'bold',
+        fontSize: 15,
+        color: 'white'
+    },
+});

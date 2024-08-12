@@ -19,6 +19,8 @@ export default function App() {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [result, setResult] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
+
 
   return (
     <View style={styles.container}>
@@ -49,7 +51,7 @@ export default function App() {
       />
 
       <Pressable
-        onPress={() => setResult(name + " " + lastName)}
+        onPress={() => setIsLoading(true)}
         style={({ pressed }) => [
           {
             backgroundColor: pressed ? 'gray' : 'black'
@@ -60,7 +62,11 @@ export default function App() {
         <Text style={styles.buttonText}>Save</Text>
       </Pressable>
 
-      <Loading />
+      {isLoading
+        ? <Loading
+          changeIsLoading={() => setIsLoading(false)} />
+        : null
+      }
 
     </View>
   );
@@ -86,13 +92,14 @@ const styles = StyleSheet.create({
   Button: {
     borderWidth: 2,
     width: '50%',
-    height: 30,
+    height: 35,
     borderRadius: 8,
-    alignItems: 'center',
-    textAlign: 'center',
     marginVertical: 14
   },
   buttonText: {
+    alignItems: 'center',
+    textAlign: 'center',
+    marginTop: 5,
     fontWeight: 'bold',
     color: 'white',
   },
