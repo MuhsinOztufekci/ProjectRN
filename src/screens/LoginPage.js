@@ -13,7 +13,7 @@ import React, { useState } from 'react';
 
 import Loading from '../components/Loading';
 
-const LoginPage = () => {
+const LoginPage = ({ navigation }) => {
 
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -25,7 +25,7 @@ const LoginPage = () => {
         <View style={styles.container}>
 
             <Image
-                style={styles.Image}
+                style={styles.image}
                 source={require('../../assets/images/loginIcon.png')} />
 
             <Text style={styles.welcome}>Welcome {result}</Text>
@@ -45,38 +45,48 @@ const LoginPage = () => {
                 style={styles.TextInputStyle}
                 onChangeText={setLastName}
                 value={lastName}
-                secureTextEntry={true} />
+                secureTextEntry={true}
+            />
 
+
+            {/* Login Button  */}
             <Pressable
                 onPress={() => setIsLoading(true)}
                 style={({ pressed }) => [
                     {
                         backgroundColor: pressed ? 'gray' : 'black'
                     },
-                    styles.Button
+                    styles.button
                 ]}
             >
-                <Text style={styles.buttonText}>Save</Text>
+                <Text style={styles.buttonText}>Login</Text>
             </Pressable>
+
+
+            {/* SignUp Button */}
 
             <Pressable
-                onPress={() => setIsLoading(true)}
+                onPress={() => navigation.navigate('SignUp Page')}
                 style={({ pressed }) => [
                     {
-                        backgroundColor: pressed ? 'gray' : 'black'
+                        backgroundColor: pressed ? 'gray' : 'lightgray',
+                        marginTop: 8
                     },
-                    styles.Button
+                    styles.signupButton
                 ]}
             >
-                <Text style={styles.buttonText}>SignUp</Text>
+                <Text style={[styles.buttonText, { color: 'black' }]}>Sign Up</Text>
+
             </Pressable>
 
-            {isLoading
-                ? <Loading
-                    changeIsLoading={() => setIsLoading(false)} />
-                : null}
+            {
+                isLoading
+                    ? <Loading
+                        changeIsLoading={() => setIsLoading(false)} />
+                    : null
+            }
 
-        </View>
+        </View >
     );
 }
 
@@ -99,7 +109,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold'
     },
-    Button: {
+    button: {
         borderWidth: 2,
         width: '50%',
         height: 35,
@@ -113,7 +123,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white',
     },
-    Image: {
+    image: {
         width: 150,
         height: 150
     },
@@ -121,5 +131,14 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 25,
         marginVertical: 20
+    },
+    signupButton: {
+        borderWidth: 2,
+        width: '35%',
+        height: 35,
+        borderRadius: 8,
+        marginVertical: 14,
+        alignItems: 'center',
+        textAlign: 'center'
     }
 });
