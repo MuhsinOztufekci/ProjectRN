@@ -24,29 +24,37 @@ const LoginPage = ({ navigation }) => {
     return (
         <View style={styles.container}>
 
+            <Text style={styles.welcome}>Hellooo {result}</Text>
             <Image
                 style={styles.image}
                 source={require('../../assets/images/loginIcon.png')} />
 
-            <Text style={styles.welcome}>Welcome {result}</Text>
 
-            <Text>Email</Text>
+            <View style={styles.inputContainer}>
 
-            <TextInput
-                placeholder='Enter Your Email'
-                style={styles.TextInputStyle}
-                onChangeText={setName}
-                value={name} />
+                <Text style={styles.inputBoxText}>Email</Text>
 
-            <Text>Password</Text>
+                <TextInput
+                    placeholder='Enter Your Email'
+                    style={styles.TextInputStyle}
+                    onChangeText={setName}
+                    value={name} />
 
-            <TextInput
-                placeholder='Enter Your Password'
-                style={styles.TextInputStyle}
-                onChangeText={setLastName}
-                value={lastName}
-                secureTextEntry={true}
-            />
+            </View>
+
+            <View style={styles.inputContainer}>
+                <Text style={styles.inputBoxText}>Password</Text>
+
+                <TextInput
+                    placeholder='Enter Your Password'
+                    style={styles.TextInputStyle}
+                    onChangeText={setLastName}
+                    value={lastName}
+                    secureTextEntry={true}
+                />
+
+            </View>
+
 
 
             {/* Login Button  */}
@@ -54,7 +62,7 @@ const LoginPage = ({ navigation }) => {
                 onPress={() => setIsLoading(true)}
                 style={({ pressed }) => [
                     {
-                        backgroundColor: pressed ? 'gray' : 'black'
+                        backgroundColor: pressed ? '#FF9800' : '#FFB74D',
                     },
                     styles.button
                 ]}
@@ -62,22 +70,20 @@ const LoginPage = ({ navigation }) => {
                 <Text style={styles.buttonText}>Login</Text>
             </Pressable>
 
-
             {/* SignUp Button */}
-
             <Pressable
-                onPress={() => navigation.navigate('SignUp Page')}
+                onPress={() => navigation.navigate('Signup')}
                 style={({ pressed }) => [
                     {
-                        backgroundColor: pressed ? 'gray' : 'lightgray',
+                        backgroundColor: pressed ? '#E65100' : '#F57C00',
                         marginTop: 8
                     },
                     styles.signupButton
                 ]}
             >
-                <Text style={[styles.buttonText, { color: 'black' }]}>Sign Up</Text>
-
+                <Text style={[styles.buttonText, { color: 'white' }]}>Sign Up</Text>
             </Pressable>
+
 
             {
                 isLoading
@@ -95,14 +101,17 @@ export default LoginPage
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#FFD966',
         color: 'white',
         alignItems: 'center',
         justifyContent: 'center',
     },
+    inputContainer: {
+        width: '80%',
+    },
     TextInputStyle: {
-        borderWidth: 1,
-        width: '50%',
+        borderBottomWidth: 1,
+        width: '100%',
         height: 38,
         borderRadius: 10,
         marginVertical: 10,
@@ -110,7 +119,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     button: {
-        borderWidth: 2,
         width: '50%',
         height: 35,
         borderRadius: 8,
@@ -124,21 +132,27 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     image: {
-        width: 150,
-        height: 150
+        width: 125,
+        height: 125
     },
     welcome: {
         fontWeight: 'bold',
-        fontSize: 25,
-        marginVertical: 20
+        fontSize: 30,
+        marginVertical: 10,
+        color: 'white'
     },
     signupButton: {
-        borderWidth: 2,
         width: '35%',
         height: 35,
         borderRadius: 8,
         marginVertical: 14,
         alignItems: 'center',
         textAlign: 'center'
-    }
+    },
+    inputBoxText: {
+        fontWeight: 'bold',
+        alignItems: 'flex-start'
+
+    },
+
 });

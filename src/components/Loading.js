@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         justifyContent: 'center',
         position: 'absolute',
-        backgroundColor: 'lightblue'
+        backgroundColor: '#FFA07A'
     },
     loginText: {
         fontWeight: 'bold',
