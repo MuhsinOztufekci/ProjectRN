@@ -3,156 +3,80 @@ import {
     StyleSheet,
     Text,
     View,
-    TextInput,
-    Pressable,
-    Button,
     Image
 } from 'react-native';
-
 import React, { useState } from 'react';
-
-import Loading from '../components/Loading';
+import { Loading, CustomTextInput, CustomButton } from '../components/';
 
 const LoginPage = ({ navigation }) => {
 
-    const [name, setName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [result, setResult] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-
 
     return (
         <View style={styles.container}>
-
-            <Text style={styles.welcome}>Hellooo {result}</Text>
+            <Text style={styles.welcome}>Welcome</Text>
             <Image
                 style={styles.image}
-                source={require('../../assets/images/loginIcon.png')} />
+                source={require('../../assets/images/loginIcon.png')}
+            />
 
+            <CustomTextInput
+                title="Email"
+                isSecureText={false}
+                handleOnChangeText={setEmail}
+                handleValue={email}
+                handlePlaceholder="Enter Your Email"
+                inputMode="email"
+            />
 
-            <View style={styles.inputContainer}>
+            <CustomTextInput
+                title="Password"
+                isSecureText={true}
+                handleOnChangeText={setPassword}
+                handleValue={password}
+                handlePlaceholder="Enter Your Password"
+            />
 
-                <Text style={styles.inputBoxText}>Email</Text>
-
-                <TextInput
-                    placeholder='Enter Your Email'
-                    style={styles.TextInputStyle}
-                    onChangeText={setName}
-                    value={name} />
-
-            </View>
-
-            <View style={styles.inputContainer}>
-                <Text style={styles.inputBoxText}>Password</Text>
-
-                <TextInput
-                    placeholder='Enter Your Password'
-                    style={styles.TextInputStyle}
-                    onChangeText={setLastName}
-                    value={lastName}
-                    secureTextEntry={true}
-                />
-
-            </View>
-
-
-
-            {/* Login Button  */}
-            <Pressable
+            {/* Login Button */}
+            <CustomButton
                 onPress={() => setIsLoading(true)}
-                style={({ pressed }) => [
-                    {
-                        backgroundColor: pressed ? '#FF9800' : '#FFB74D',
-                    },
-                    styles.button
-                ]}
-            >
-                <Text style={styles.buttonText}>Login</Text>
-            </Pressable>
+                title="Login"
+                style={{ width: '50%' }}
+            />
 
             {/* SignUp Button */}
-            <Pressable
+            <CustomButton
                 onPress={() => navigation.navigate('Signup')}
-                style={({ pressed }) => [
-                    {
-                        backgroundColor: pressed ? '#E65100' : '#F57C00',
-                        marginTop: 8
-                    },
-                    styles.signupButton
-                ]}
-            >
-                <Text style={[styles.buttonText, { color: 'white' }]}>Sign Up</Text>
-            </Pressable>
+                title="Sign Up"
+                style={{ width: '35%', backgroundColor: '#F57C00' }}
+            />
 
-
-            {
-                isLoading
-                    ? <Loading
-                        changeIsLoading={() => setIsLoading(false)} />
-                    : null
-            }
-
-        </View >
+            {isLoading && (
+                <Loading changeIsLoading={() => setIsLoading(false)} />
+            )}
+        </View>
     );
-}
+};
 
-export default LoginPage
+export default LoginPage;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FFD966',
-        color: 'white',
         alignItems: 'center',
         justifyContent: 'center',
     },
-    inputContainer: {
-        width: '80%',
-    },
-    TextInputStyle: {
-        borderBottomWidth: 1,
-        width: '100%',
-        height: 38,
-        borderRadius: 10,
-        marginVertical: 10,
-        textAlign: 'center',
-        fontWeight: 'bold'
-    },
-    button: {
-        width: '50%',
-        height: 35,
-        borderRadius: 8,
-        marginVertical: 14
-    },
-    buttonText: {
-        alignItems: 'center',
-        textAlign: 'center',
-        marginTop: 5,
-        fontWeight: 'bold',
-        color: 'white',
-    },
     image: {
         width: 125,
-        height: 125
+        height: 125,
     },
     welcome: {
         fontWeight: 'bold',
         fontSize: 30,
         marginVertical: 10,
-        color: 'white'
+        color: 'white',
     },
-    signupButton: {
-        width: '35%',
-        height: 35,
-        borderRadius: 8,
-        marginVertical: 14,
-        alignItems: 'center',
-        textAlign: 'center'
-    },
-    inputBoxText: {
-        fontWeight: 'bold',
-        alignItems: 'flex-start'
-
-    },
-
 });
